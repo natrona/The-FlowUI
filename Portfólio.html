@@ -1,1 +1,205 @@
-
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+  <title>Portfólio — Jonhantann N.</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;max-width:100%;word-break:break-word;overflow-wrap:break-word}
+    :root{--bg:#050505;--panel:#0b0b0d;--muted:#9aa3ad;--accent:#7c5cff;--accent-2:#00e6a8;--radius:14px;--maxw:1100px;font-family:'Inter',sans-serif;color-scheme:dark}
+    html,body{width:100%;overflow-x:hidden;background:linear-gradient(180deg,var(--bg),#080808);color:#e6eef3;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    #splash{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .5s}
+    .spinner{width:50px;height:50px;border:4px solid rgba(124,92,255,0.2);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .content{opacity:0;transition:opacity .3s}
+    .content.visible{opacity:1}
+    .content.visible .fade{animation:fade .45s ease both}
+    .content.visible h2{animation:slowFade 1.2s ease both}
+    .wrap{max-width:var(--maxw);width:100%;margin:0 auto;padding:20px}
+    header{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;font-weight:800;font-family:'Space Grotesk',sans-serif;font-size:24px;background-image:url('https://avatars.githubusercontent.com/u/127808337?s=400&u=a7f6bea3d2035352d4ef7bdd824823b8033f95dc&v=4');background-size:cover;background-position:center;color:transparent}
+    .brand-info h1{font-size:1.2rem;font-family:'Space Grotesk',sans-serif}
+    .brand-info p{font-size:.8rem;color:var(--muted)}
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:24px;margin-top:30px}
+    .intro{padding:28px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(6px);width:100%;overflow-x:hidden}
+    .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(124,92,255,0.12);color:var(--accent);font-weight:700;font-size:.8rem;text-transform:uppercase}
+    h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,5vw,2.5rem);margin:16px 0 12px}
+    p.lead{color:var(--muted);max-width:100%;line-height:1.6;font-size:1rem}
+    .actions{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px 16px;border-radius:var(--radius);color:var(--muted);cursor:pointer;font-size:.9rem;font-weight:500;transition:.2s;white-space:normal;text-align:center}
+    .btn:hover{background:rgba(255,255,255,0.05);color:#fff}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071018;border:none;padding:8px 20px;border-radius:var(--radius);font-weight:700;cursor:pointer;font-size:.9rem;white-space:normal;text-align:center}
+    .stats{display:flex;gap:16px;flex-wrap:wrap;width:100%}
+    .stat{padding:12px 8px;border-radius:var(--radius);background:linear-gradient(90deg,rgba(255,255,255,0.01),transparent);text-align:center;flex:1 1 0;min-width:80px}
+    .stat strong{display:block;font-size:1.5rem;font-weight:700}
+    .stat span{color:var(--muted);font-size:.7rem;text-transform:uppercase}
+    .carousel{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(6px);border-radius:var(--radius);padding:20px 16px;width:100%;max-width:100%;overflow:hidden}
+    .carousel h4{font-size:1.2rem;margin-bottom:16px;font-family:'Space Grotesk',sans-serif}
+    .carousel-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px;scroll-padding-left:16px;scroll-padding-right:16px}
+    .carousel-track::-webkit-scrollbar{height:4px}
+    .carousel-track::-webkit-scrollbar-thumb{background:var(--accent);border-radius:4px}
+    .card-special{scroll-snap-align:start;flex-shrink:0;width:260px;background:rgba(10,10,15,0.6);border:1px solid rgba(255,255,255,0.03);border-radius:16px;padding:24px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    @media(max-width:560px){.card-special{width:220px}}
+    @media(max-width:400px){.card-special{width:calc(100vw - 48px);min-width:200px}}
+    .card-special .icon{width:64px;height:64px;background:rgba(124,92,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;color:var(--accent);margin-bottom:16px}
+    .card-special h5{font-size:1.1rem;margin-bottom:8px;font-family:'Space Grotesk',sans-serif}
+    .card-special p{color:var(--muted);font-size:.85rem;line-height:1.4}
+    .indicators{display:flex;justify-content:center;gap:8px;margin-top:12px}
+    .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.2);transition:.2s}
+    .dot.active{background:var(--accent);width:20px;border-radius:10px}
+    .section{margin-top:48px}
+    .section h3{font-size:1.8rem;margin-bottom:16px;font-family:'Space Grotesk',sans-serif}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+    .filter{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px 16px;border-radius:999px;color:var(--muted);cursor:pointer;font-size:.85rem}
+    .filter.active{background:linear-gradient(90deg,var(--accent),rgba(124,92,255,0.12));color:var(--accent);border-color:var(--accent)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .project-card{border-radius:12px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent)}
+    .project-card .thumb{height:180px;background-size:cover;background-position:center}
+    .project-card .body{padding:16px}
+    .project-card h4{font-size:1.1rem;margin-bottom:6px;font-family:'Space Grotesk',sans-serif}
+    .project-card p{color:var(--muted);font-size:.85rem}
+    .tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+    .tag{font-size:.7rem;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);text-transform:capitalize}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.8);z-index:120;backdrop-filter:blur(4px)}
+    .modal-box{width:92%;max-width:900px;height:80%;background:var(--panel);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .modal-header h3{font-family:'Space Grotesk',sans-serif}
+    #closeModal{background:0 0;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer}
+    .modal-frame{flex:1;border-radius:8px;border:1px solid rgba(255,255,255,0.02);overflow:auto}
+    .about{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .about p{color:var(--muted);line-height:1.6;margin-bottom:16px}
+    .about h4{font-family:'Space Grotesk',sans-serif;margin-bottom:20px}
+    .about ul{list-style:none}
+    .about li{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:#ddd}
+    .about li i{width:32px;height:32px;background:rgba(124,92,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .fa-html5{color:#e34f26}
+    .fa-css3-alt{color:#1572b6}
+    .fa-js{color:#f7df1e}
+    .fa-figma{color:#a259ff}
+    .fa-react{color:#61dafb}
+    .fa-pencil-ruler{color:#ff6b6b}
+    .skills-list{display:flex;flex-direction:column;gap:12px}
+    .skill-item{display:flex;align-items:center;gap:12px}
+    .skill-item i{width:36px;height:36px;background:rgba(124,92,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+    footer{margin-top:48px;padding:24px 20px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+    .footer-links a{color:var(--muted);text-decoration:none}
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}}
+    @media(max-width:700px){header{flex-direction:column;align-items:flex-start}}
+    @media(max-width:560px){.grid{grid-template-columns:1fr}.brand h1{font-size:1rem}.logo{width:52px;height:52px}.actions button{width:100%}.stat{padding:12px 4px;min-width:70px}.stat strong{font-size:1.2rem}.stat span{font-size:.65rem}footer{flex-direction:column;text-align:center}}
+    @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    @keyframes slowFade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div id="splash"><div class="spinner"></div></div>
+  <div class="content">
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo">JN</div>
+          <div class="brand-info"><h1>Jonhantann N.</h1><p>UI/UX Designer • Frontend Developer</p></div>
+        </div>
+      </header>
+      <section class="hero">
+        <div class="intro">
+          <div class="kicker fade">Portfólio</div>
+          <h2>Crio interfaces modernas, limpas e que convertem</h2>
+          <p class="lead fade">Foco em produtos digitais: landing pages, lojas, apps e experiências de usuário — tudo com atenção no detalhe e performance.</p>
+          <div class="actions fade">
+            <button class="btn" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Ver projetos</button>
+            <button class="btn-primary" id="hireBtn">Contratar</button>
+          </div>
+          <div class="stats fade" id="stats">
+            <div class="stat"><strong id="stat1">0</strong><span>projetos</span></div>
+            <div class="stat"><strong id="stat2">0</strong><span>horas</span></div>
+            <div class="stat"><strong id="stat3">0.0</strong><span>avaliação</span></div>
+          </div>
+        </div>
+        <aside class="carousel fade">
+          <h4>Especialidades</h4>
+          <div class="carousel-track" id="carouselTrack">
+            <div class="card-special"><div class="icon"><i class="fas fa-mobile-alt"></i></div><h5>UI/UX Design</h5><p>Interfaces intuitivas, protótipos de alta fidelidade e fluxos otimizados para conversão.</p></div>
+            <div class="card-special"><div class="icon"><i class="fas fa-code"></i></div><h5>Front-end</h5><p>HTML5, CSS3, JavaScript, React – código semântico, performático e totalmente responsivo.</p></div>
+            <div class="card-special"><div class="icon"><i class="fas fa-rocket"></i></div><h5>Landing Pages</h5><p>Páginas de alta conversão, focadas em performance e SEO básico.</p></div>
+            <div class="card-special"><div class="icon"><i class="fas fa-paint-brush"></i></div><h5>Design System</h5><p>Criação e documentação de componentes reutilizáveis para escalar produtos.</p></div>
+            <div class="card-special"><div class="icon"><i class="fas fa-chart-line"></i></div><h5>Dashboards</h5><p>Visualização de dados clara e interativa com gráficos e métricas em tempo real.</p></div>
+          </div>
+          <div class="indicators" id="indicators"></div>
+        </aside>
+      </section>
+      <section class="section" id="projects">
+        <h3>Projetos</h3>
+        <div class="filters" id="filters">
+          <button class="filter active" data-filter="all">Todos</button>
+          <button class="filter" data-filter="web">Web</button>
+          <button class="filter" data-filter="mobile">Mobile</button>
+          <button class="filter" data-filter="ecommerce">E-commerce</button>
+        </div>
+        <div class="grid" id="grid"></div>
+      </section>
+      <section class="section" id="about">
+        <h3>Sobre mim</h3>
+        <div class="about">
+          <div>
+            <p>Sou um designer que também mexe com front. Gosto de entregas rápidas, código limpo e interfaces que parecem simples — mas funcionam mesmo. Trabalho com React, HTML/CSS, design system e UI acessível.</p>
+            <h4>Serviços</h4>
+            <ul>
+              <li><i class="fas fa-pencil-ruler"></i> UI/UX Design</li>
+              <li><i class="fas fa-code"></i> Frontend (HTML/CSS/JS)</li>
+              <li><i class="fas fa-store"></i> Landing Pages e E-commerce</li>
+              <li><i class="fas fa-mobile-alt"></i> Prototipação e testes</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Habilidades</h4>
+            <div class="skills-list">
+              <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+              <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+              <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+              <div class="skill-item"><i class="fab fa-react"></i> React</div>
+              <div class="skill-item"><i class="fab fa-figma"></i> Figma</div>
+              <div class="skill-item"><i class="fas fa-pencil-ruler"></i> UI/UX Design</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div>© Jonhantann N. • UI/UX & Frontend</div>
+        <div class="footer-links"><a href="#" id="waLink">WhatsApp</a></div>
+      </footer>
+    </div>
+  </div>
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="modal-header"><h3 id="modalTitle"></h3><button id="closeModal">&times;</button></div>
+      <div class="modal-frame" id="modalFrame"></div>
+    </div>
+  </div>
+  <script>
+    const PHONE='558597374043';
+    const projects=[
+      {id:'pr1',title:'Landing - Produto X',type:'web',img:'https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1200&auto=format&fit=crop',desc:'Landing focada em conversão, A/B tested.'},
+      {id:'pr2',title:'App Mobile - Finanças',type:'mobile',img:'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop',desc:'UI clean, microinterações e dark mode.'},
+      {id:'pr3',title:'E-commerce - Moda',type:'ecommerce',img:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1200&auto=format&fit=crop',desc:'Vitrine com filtro dinâmico e checkout simples.'},
+      {id:'pr4',title:'Dashboard Analítico',type:'web',img:'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop',desc:'Dashboards com enfoque em performance.'},
+      {id:'pr5',title:'Portfolio - Fotografia',type:'web',img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop',desc:'Galeria e experiência imersiva.'},
+      {id:'pr6',title:'App de Idiomas',type:'mobile',img:'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=1200&auto=format&fit=crop',desc:'Plataforma de aprendizado de idiomas com lições interativas e gamificação.'}
+    ];
+    const splash=document.getElementById('splash'),content=document.querySelector('.content');
+    const stat1=document.getElementById('stat1'),stat2=document.getElementById('stat2'),stat3=document.getElementById('stat3');
+    const T=[50,10000,4.9];
+    function animateNumbers(){let start;!function step(t){start||(start=t);const p=Math.min((t-start)/1500,1);stat1.textContent=Math.floor(p*T[0]);stat2.textContent=Math.floor(p*T[1]);stat3.textContent=(p*T[2]).toFixed(1);p<1?requestAnimationFrame(step):(stat1.textContent=T[0],stat2.textContent=T[1],stat3.textContent=T[2].toFixed(1))}(performance.now())}
+    window.addEventListener('load',()=>{setTimeout(()=>{splash.style.opacity='0';setTimeout(()=>{splash.style.display='none';content.classList.add('visible');animateNumbers();setupCarousel()},500)},1e3)});
+    document.getElementById('waLink').href=`https://wa.me/${PHONE}`;
+    document.getElementById('hireBtn').onclick=()=>window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent('Olá! Estou interessado em contratar seus serviços.')}`,'_blank');
+    function setupCarousel(){const track=document.getElementById('carouselTrack'),dots=document.getElementById('indicators');if(!track||!dots)return;const cards=track.children,L=cards.length;for(let i=0;i<L;i++){const d=document.createElement('span');d.className='dot'+(i===0?' active':'');dots.appendChild(d)}const allDots=document.querySelectorAll('.dot');track.addEventListener('scroll',()=>{const left=track.scrollLeft,w=cards[0].offsetWidth+16,idx=Math.min(Math.round(left/w),L-1);allDots.forEach((dot,i)=>dot.classList.toggle('active',i===idx))})}
+    const grid=document.getElementById('grid'),filters=document.querySelectorAll('.filter'),modal=document.getElementById('modal'),modalTitle=document.getElementById('modalTitle'),modalFrame=document.getElementById('modalFrame'),closeModal=document.getElementById('closeModal');
+    function render(filter='all'){grid.innerHTML='';const filtered=filter==='all'?projects:projects.filter(p=>p.type===filter);filtered.forEach(p=>{const card=document.createElement('div');card.className='project-card fade';card.innerHTML=`<div class="thumb" style="background-image:url('${p.img}')"></div><div class="body"><h4>${p.title}</h4><p>${p.desc}</p><div class="tags"><span class="tag">${p.type}</span><button class="btn" data-id="${p.id}" style="margin-left:auto">Ver</button></div></div>`;grid.appendChild(card)});document.querySelectorAll('[data-id]').forEach(b=>{b.onclick=e=>{e.stopPropagation();const proj=projects.find(p=>p.id===b.dataset.id);if(proj){modalTitle.textContent=proj.title;modalFrame.innerHTML=`<div style="height:60%;background-image:url('${proj.img}');background-size:cover;background-position:center;border-radius:8px 8px 0 0"></div><div style="padding:16px;color:var(--muted)"><p style="margin-bottom:8px">${proj.desc}</p><p><strong>Tipo:</strong> ${proj.type}</p></div>`;modal.style.display='flex'}}})}
+    filters.forEach(f=>{f.onclick=()=>{filters.forEach(x=>x.classList.remove('active'));f.classList.add('active');render(f.dataset.filter)}});
+    closeModal.onclick=()=>modal.style.display='none';window.onclick=e=>e.target===modal&&(modal.style.display='none');render();
+  </script>
+</body>
+</html>
