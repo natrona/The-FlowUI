@@ -113,8 +113,8 @@
             <button class="btn-primary" id="hireBtn">Contratar</button>
           </div>
           <div class="stats fade" id="stats">
-            <div class="stat"><strong id="stat1">20</strong><span>projetos</span></div>
-            <div class="stat"><strong id="stat2">2000</strong><span>horas</span></div>
+            <div class="stat"><strong id="stat1">0</strong><span>projetos</span></div>
+            <div class="stat"><strong id="stat2">0</strong><span>horas</span></div>
             <div class="stat"><strong id="stat3">0.0</strong><span>avaliação</span></div>
           </div>
         </div>
@@ -190,7 +190,7 @@
     ];
     const splash=document.getElementById('splash'),content=document.querySelector('.content');
     const stat1=document.getElementById('stat1'),stat2=document.getElementById('stat2'),stat3=document.getElementById('stat3');
-    const T=[50,10000,4.9];
+    const T=[20,2000,4.9];
     function animateNumbers(){let start;!function step(t){start||(start=t);const p=Math.min((t-start)/1500,1);stat1.textContent=Math.floor(p*T[0]);stat2.textContent=Math.floor(p*T[1]);stat3.textContent=(p*T[2]).toFixed(1);p<1?requestAnimationFrame(step):(stat1.textContent=T[0],stat2.textContent=T[1],stat3.textContent=T[2].toFixed(1))}(performance.now())}
     window.addEventListener('load',()=>{setTimeout(()=>{splash.style.opacity='0';setTimeout(()=>{splash.style.display='none';content.classList.add('visible');animateNumbers();setupCarousel()},500)},1e3)});
     document.getElementById('waLink').href=`https://wa.me/${PHONE}`;
