@@ -42,7 +42,111 @@
     .btn-primary:hover{transform:scale(1.02);box-shadow:0 10px 24px rgba(124,92,255,0.5)}
     @media (max-width:700px){.receipt-card{padding:22px 16px}.receipt-header{flex-direction:column;align-items:flex-start}.receipt-title{margin-left:0}.receipt-body{grid-template-columns:1fr;gap:16px}.signature-area{flex-direction:column;align-items:flex-start}.signature-line{width:100%}.btn-primary{width:100%;justify-content:center}}
     @media (max-width:400px){.logo{width:52px;height:52px}.brand-text h1{font-size:1.3rem}}
-    @media print{body{background:white;padding:0.5in}.receipt-card{box-shadow:none;background:white;border:1px solid #ccc;backdrop-filter:none;color:black}.field-value{background:#f5f5f5;border-color:#ddd;color:black}.btn-primary,.copy-btn{display:none}.logo{background:#eee;box-shadow:none}.brand-text h1{-webkit-text-fill-color:black}.receipt-title{background:#eee;color:#333}.notice{border-left-color:#aaa}}
+
+    /* --- AJUSTES PARA IMPRESSÃO EM UMA ÚNICA PÁGINA --- */
+    @media print {
+      @page {
+        size: A4;
+        margin: 1cm;
+      }
+      body {
+        background: white;
+        padding: 0;
+        margin: 0;
+        display: block;
+        min-height: auto;
+      }
+      .receipt-card {
+        max-width: 100%;
+        padding: 15px;
+        margin: 0 auto;
+        background: white;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        backdrop-filter: none;
+        color: black;
+        page-break-inside: avoid; /* impede quebra no meio do card */
+      }
+      /* Redução de espaçamentos para economizar altura */
+      .receipt-header {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        gap: 10px;
+      }
+      .brand-text h1 {
+        font-size: 1.4rem;
+        background: none;
+        -webkit-text-fill-color: black;
+        color: black;
+      }
+      .brand-text p {
+        color: #555;
+      }
+      .receipt-title {
+        background: #eee;
+        color: #333;
+        border-color: #aaa;
+        padding: 4px 12px;
+        font-size: 0.8rem;
+      }
+      .receipt-body {
+        gap: 12px;
+        margin: 12px 0 8px;
+      }
+      .field-label {
+        color: #555;
+      }
+      .field-value {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        color: #222;
+        box-shadow: none;
+      }
+      .valor-destaque {
+        font-size: 1.2rem;
+        background: #f0f0f0;
+        border-left-color: #00a878;
+      }
+      .receipt-footer {
+        margin-top: 12px;
+        padding-top: 12px;
+        gap: 8px;
+      }
+      .signature-line {
+        font-size: 1rem;
+        color: #333;
+        border-bottom-color: #00a878;
+        min-width: 200px;
+      }
+      .digital-stamp {
+        background: #eaeaea;
+        color: #006b4d;
+        border-color: #006b4d;
+        padding: 4px 10px;
+      }
+      .notice {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        background: #fafafa;
+        color: #444;
+        border-left-width: 3px;
+      }
+      .notice i {
+        color: #006b4d;
+      }
+      /* Oculta elementos interativos */
+      .btn-primary,
+      .copy-btn,
+      .receipt-title i {
+        display: none;
+      }
+      /* Ajuste para o ícone do título não aparecer */
+      .receipt-title i.fa-receipt {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
