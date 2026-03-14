@@ -1,1 +1,76 @@
-
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+  <title>Jonatta Nascimento Araujo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;word-break:break-word;overflow-wrap:break-word}
+    :root{--bg:#050505;--panel:#0b0b0d;--muted:#9aa3ad;--accent:#7c5cff;--accent-2:#00e6a8;--radius:14px;--max-width:800px;font-family:'Inter',sans-serif;color-scheme:dark}
+    body{background:linear-gradient(180deg,var(--bg),#080808);color:#e6eef3;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px;margin:0;-webkit-font-smoothing:antialiased}
+    .receipt-card{max-width:var(--max-width);width:100%;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:var(--radius);border:1px solid rgba(255,255,255,0.03);padding:32px 28px;box-shadow:0 20px 40px rgba(0,0,0,0.6);animation:fadeIn .5s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .receipt-header{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:28px;border-bottom:1px solid rgba(124,92,255,0.15);padding-bottom:20px}
+    .logo{width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--panel);box-shadow:0 8px 16px rgba(124,92,255,0.25)}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .brand-text h1{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:-0.02em;background:linear-gradient(90deg,#fff,var(--muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .brand-text p{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+    .receipt-title{margin-left:auto;background:rgba(124,92,255,0.12);padding:8px 16px;border-radius:40px;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:.9rem;color:var(--accent);border:1px solid rgba(124,92,255,0.2);white-space:nowrap}
+    .receipt-body{display:grid;grid-template-columns:1fr 1fr;gap:28px 24px;margin:24px 0 16px}
+    .field-group{display:flex;flex-direction:column;gap:6px}
+    .field-group.full-width{grid-column:1/-1}
+    .field-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);font-weight:500}
+    .field-value{background:rgba(10,10,15,0.6);border:1px solid rgba(255,255,255,0.03);border-radius:12px;padding:14px 16px;font-size:1rem;font-weight:400;color:#f0f4f8;box-shadow:inset 0 2px 3px rgba(0,0,0,0.3);transition:border .2s;display:flex;align-items:center;justify-content:space-between}
+    .field-value i{color:var(--accent-2);margin-right:8px;width:20px}
+    .valor-destaque{background:linear-gradient(90deg,rgba(124,92,255,0.15),rgba(0,230,168,0.1));border-left:4px solid var(--accent-2);font-weight:700;font-size:1.4rem;font-family:'Space Grotesk',sans-serif;display:flex;align-items:center;gap:8px}
+    #statusField{transition:background .2s}
+    .status-pendente{border-left:4px solid #ffaa00}
+    .status-pago{border-left:4px solid var(--accent-2)}
+    .status-atrasado{border-left:4px solid #ff5e5e}
+    .copy-btn{background:transparent;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:6px 10px;font-size:.75rem;color:var(--muted);cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:4px}
+    .copy-btn:hover{background:rgba(124,92,255,0.2);color:#fff}
+    .receipt-footer{margin-top:32px;border-top:1px solid rgba(124,92,255,0.15);padding-top:24px;display:flex;flex-direction:column;gap:20px}
+    .signature-area{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .signature-line{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:400;letter-spacing:1px;color:#d0dae5;border-bottom:2px dashed var(--accent-2);padding-bottom:4px;min-width:240px}
+    .digital-stamp{background:rgba(0,230,168,0.1);border-radius:40px;padding:6px 14px;font-size:.75rem;color:var(--accent-2);border:1px solid rgba(0,230,168,0.3);display:inline-flex;align-items:center;gap:6px}
+    .notice{background:rgba(255,255,255,0.01);border-radius:10px;padding:12px 16px;font-size:.8rem;color:var(--muted);border-left:3px solid var(--accent);line-height:1.5}
+    .notice i{color:var(--accent-2);margin-right:8px}
+    .actions{display:flex;justify-content:flex-end;margin-top:12px}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#071018;border:none;padding:14px 32px;border-radius:var(--radius);font-weight:700;font-size:.95rem;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:12px;box-shadow:0 8px 18px rgba(124,92,255,0.3);border:1px solid rgba(255,255,255,0.05)}
+    .btn-primary:hover{transform:scale(1.02);box-shadow:0 10px 24px rgba(124,92,255,0.5)}
+    @media (max-width:700px){.receipt-card{padding:22px 16px}.receipt-header{flex-direction:column;align-items:flex-start}.receipt-title{margin-left:0}.receipt-body{grid-template-columns:1fr;gap:16px}.signature-area{flex-direction:column;align-items:flex-start}.signature-line{width:100%}.btn-primary{width:100%;justify-content:center}}
+    @media (max-width:400px){.logo{width:52px;height:52px}.brand-text h1{font-size:1.3rem}}
+    @media print{body{background:white;padding:0.5in}.receipt-card{box-shadow:none;background:white;border:1px solid #ccc;backdrop-filter:none;color:black}.field-value{background:#f5f5f5;border-color:#ddd;color:black}.btn-primary,.copy-btn{display:none}.logo{background:#eee;box-shadow:none}.brand-text h1{-webkit-text-fill-color:black}.receipt-title{background:#eee;color:#333}.notice{border-left-color:#aaa}}
+  </style>
+</head>
+<body>
+<div class="receipt-card">
+  <div class="receipt-header">
+    <div class="logo"><img src="https://avatars.githubusercontent.com/u/127808337?s=400&u=a7f6bea3d2035352d4ef7bdd824823b8033f95dc&v=4" alt="Jonatta Nascimento Araujo"></div>
+    <div class="brand-text"><h1>Jonatta Nascimento Araujo</h1><p>UI/UX • Front-end • identidade</p></div>
+    <div class="receipt-title"><i class="fas fa-receipt" style="margin-right:6px"></i> COMPROVANTE DE SERVIÇO</div>
+  </div>
+  <div class="receipt-body">
+    <div class="field-group full-width"><span class="field-label"><i class="far fa-user"></i> CLIENTE</span><div class="field-value" id="clienteField">—</div></div>
+    <div class="field-group full-width"><span class="field-label"><i class="fas fa-pencil-ruler"></i> DESCRIÇÃO DO SERVIÇO</span><div class="field-value" id="descricaoField">—</div></div>
+    <div class="field-group"><span class="field-label"><i class="far fa-calendar-alt"></i> PERÍODO</span><div class="field-value" id="periodoField">—</div></div>
+    <div class="field-group"><span class="field-label"><i class="far fa-calendar-check"></i> EMISSÃO</span><div class="field-value" id="dataEmissaoField">—</div></div>
+    <div class="field-group"><span class="field-label"><i class="fas fa-clock"></i> STATUS</span><div class="field-value" id="statusField">Aguardando pagamento</div></div>
+    <div class="field-group"><span class="field-label"><i class="far fa-calendar-times"></i> VENCIMENTO</span><div class="field-value" id="vencimentoField">—</div></div>
+    <div class="field-group full-width"><span class="field-label"><i class="fas fa-qrcode"></i> CHAVE PIX</span><div class="field-value" id="pixField"><span id="pixTexto">—</span><button class="copy-btn" id="copiarPixBtn"><i class="far fa-copy"></i> Copiar</button></div></div>
+    <div class="field-group full-width"><span class="field-label"><i class="fas fa-tag"></i> VALOR TOTAL</span><div class="field-value valor-destaque" id="valorField"><i class="fas fa-coins" style="color:var(--accent-2)"></i> <span id="valorTexto">—</span></div></div>
+  </div>
+  <div class="receipt-footer">
+    <div class="signature-area"><div class="signature-line">Jonatta Nascimento Araujo</div><div class="digital-stamp"><i class="fas fa-lock"></i> Assinatura digital</div></div>
+    <div class="notice"><i class="fas fa-info-circle"></i> Este documento serve como comprovante, não possui validade fiscal sem CNPJ registrado.</div>
+    <div class="notice" style="border-left-color:var(--accent-2)"><i class="fas fa-hand-holding-usd"></i> <strong>Instruções:</strong> Após o pagamento, envie o comprovante para confirmar. O desenvolvimento será iniciado em até 24h após a confirmação.</div>
+    <div class="actions"><button class="btn-primary" id="printBtn"><i class="fas fa-print"></i> IMPRIMIR / SALVAR PDF</button></div>
+  </div>
+</div>
+<script>
+  (function(){function g(){const p=new URLSearchParams(window.location.search);return{cliente:p.get('cliente')||'',descricao:p.get('descricao')||p.get('servico')||'',periodo:p.get('periodo')||'',valor:p.get('valor')||'',data:p.get('data')||'',status:p.get('status')||'',vencimento:p.get('vencimento')||'',pix:p.get('pix')||''}}function f(v){if(!v)return'—';if(v.includes('R$'))return v;const n=parseFloat(v.replace(',','.'));return isNaN(n)?v:n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}function d(){const h=new Date();return String(h.getDate()).padStart(2,'0')+'/'+String(h.getMonth()+1).padStart(2,'0')+'/'+h.getFullYear()}function v3(){const h=new Date();h.setDate(h.getDate()+3);return String(h.getDate()).padStart(2,'0')+'/'+String(h.getMonth()+1).padStart(2,'0')+'/'+h.getFullYear()}function preencher(){const p=g();document.getElementById('clienteField').innerText=p.cliente||'—';document.getElementById('descricaoField').innerText=p.descricao||'—';document.getElementById('periodoField').innerText=p.periodo||'—';const emissao=p.data||d();document.getElementById('dataEmissaoField').innerText=emissao;let st=p.status||'Aguardando pagamento';const sf=document.getElementById('statusField');sf.innerText=st;sf.classList.remove('status-pendente','status-pago','status-atrasado');const ls=st.toLowerCase();if(ls.includes('pago')||ls.includes('confirmado')) sf.classList.add('status-pago');else if(ls.includes('atrasado')||ls.includes('vencido')) sf.classList.add('status-atrasado');else sf.classList.add('status-pendente');let venc=p.vencimento||v3();document.getElementById('vencimentoField').innerText=venc;let pix=p.pix||'123.456.789-00';document.getElementById('pixTexto').innerText=pix;document.getElementById('valorTexto').innerText=f(p.valor);}document.getElementById('printBtn').addEventListener('click',()=>window.print());document.getElementById('copiarPixBtn').addEventListener('click',function(){const pix=document.getElementById('pixTexto').innerText;navigator.clipboard.writeText(pix).then(()=>{const btn=this;const original=btn.innerHTML;btn.innerHTML='<i class=\"fas fa-check\"></i> Copiado!';setTimeout(()=>{btn.innerHTML=original},2000)}).catch(()=>{alert('Erro ao copiar')})});preencher();})();
+</script>
+</body>
+</html>
