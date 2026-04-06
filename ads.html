@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="The FlowUI - Criação de sites profissionais que vendem. Design estratégico, código otimizado e foco em resultados.">
+  <title>The FlowUI | Criação de Sites que Vendem</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --bg: #ffffff;
+      --surface: #f8f9fc;
+      --card-bg: #ffffff;
+      --text-primary: #1a1a2e;
+      --text-secondary: #4a4a6a;
+      --muted: #6c6c8a;
+      --border: #e2e8f0;
+      --accent: #7c5cff;
+      --accent-2: #00e6a8;
+      --radius: 16px;
+      --maxw: 1200px;
+      --shadow: 0 10px 30px -10px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.02);
+      --shadow-hover: 0 20px 35px -12px rgba(0,0,0,0.1);
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+    h1, h2, h3, button, .btn-primary, input, textarea {
+      font-family: 'Inter', 'Space Grotesk', sans-serif;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    h2 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .lead {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+    .text-large {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      color: #ffffff;
+      box-shadow: var(--shadow);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-info h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0;
+    }
+    .brand-info p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    .btn-primary {
+      background: linear-gradient(95deg, var(--accent), var(--accent-2));
+      border: none;
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 700;
+      color: #ffffff;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(124,92,255,0.2);
+    }
+    .btn-primary:hover {
+      transform: scale(0.97);
+      opacity: 0.92;
+      box-shadow: 0 4px 12px rgba(124,92,255,0.3);
+    }
+    /* Skeleton loading (apenas para carregamento) */
+    .skeleton {
+      background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.2s infinite;
+      border-radius: 8px;
+      color: transparent !important;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .hero {
+      margin: 40px 0 60px;
+      text-align: left;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: flex-start;
+      gap: 48px;
+      margin: 48px 0 32px;
+      flex-wrap: wrap;
+    }
+    .hero-stats .number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--accent);
+    }
+    .hero-stats .label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    /* Cards de benefícios - sem ícones, fundo branco com sombra */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin: 48px 0;
+    }
+    .benefit-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: 0.2s;
+    }
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+    .benefit-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+    .benefit-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    /* Metodologia */
+    .method-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .step {
+      text-align: center;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 24px 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .step .step-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: #ffffff;
+    }
+    .step h3 {
+      margin-bottom: 8px;
+    }
+    .step p {
+      color: var(--text-secondary);
+    }
+    /* Garantia */
+    .guarantee-content {
+      margin: 48px 0;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(124,92,255,0.05), rgba(0,230,168,0.02));
+      border-radius: 32px;
+      padding: 40px;
+      border: 1px solid var(--border);
+    }
+    /* FAQ */
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin-bottom: 16px;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.3s;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding-bottom: 20px;
+    }
+    .faq-question i {
+      color: var(--accent);
+      transition: 0.2s;
+    }
+    /* Formulário */
+    .contact-form-flat {
+      margin: 48px 0;
+    }
+    input, textarea {
+      width: 100%;
+      max-width: 600px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 14px 20px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin-bottom: 20px;
+      font-family: 'Inter', sans-serif;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124,92,255,0.1);
+    }
+    textarea {
+      border-radius: 28px;
+      resize: vertical;
+    }
+    @media (max-width: 980px) {
+      .benefits-grid { grid-template-columns: 1fr; }
+      .method-steps { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 640px) {
+      .method-steps { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">F</div>
+      <div class="brand-info">
+        <h2>The FlowUI</h2>
+        <p>Criação de sites que convertem</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1 id="heroTitle" class="skeleton">Seu negócio merece um site que não seja apenas bonito, mas que venda de verdade.</h1>
+    <p id="heroLead" class="lead skeleton">Pare de perder clientes para a concorrência. Um site profissional é o primeiro passo para construir autoridade, gerar leads e multiplicar seu faturamento. Nós criamos soluções digitais sob medida, com foco em conversão e performance.</p>
+    <div class="hero-stats" id="heroStats">
+      <div><span id="stat1" class="number skeleton">98%</span><div id="stat1Label" class="label skeleton">clientes satisfeitos</div></div>
+      <div><span id="stat2" class="number skeleton">+150%</span><div id="stat2Label" class="label skeleton">aumento médio em leads</div></div>
+      <div><span id="stat3" class="number skeleton">7 dias</span><div id="stat3Label" class="label skeleton">entrega da primeira versão</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 id="benefitsTitle" class="skeleton">Por que investir em um site profissional agora?</h2>
+    <div class="benefits-grid" id="benefitsGrid"></div>
+  </section>
+
+  <section>
+    <h2 id="methodTitle" class="skeleton">Como transformamos sua ideia em um site de alto desempenho</h2>
+    <div class="method-steps" id="methodSteps"></div>
+  </section>
+
+  <div id="guaranteeBlock" class="guarantee-content">
+    <i class="fas fa-medal" style="font-size: 2.5rem; color: var(--accent); visibility: hidden;"></i>
+    <h3 style="visibility: hidden;">Garantia de satisfação ou seu dinheiro de volta</h3>
+    <p style="visibility: hidden;" class="text-large">Você só paga quando estiver 100% satisfeito com o resultado.</p>
+    <button class="btn-primary" id="guaranteeCta" style="visibility: hidden;">Quero garantir meu site</button>
+  </div>
+
+  <section>
+    <h2 id="faqTitle" class="skeleton">Respostas para suas dúvidas</h2>
+    <div class="faq-list" id="faqList"></div>
+  </section>
+
+  <section>
+    <h2 id="contactTitle" class="skeleton">Vamos conversar sobre seu projeto?</h2>
+    <div id="contactFormFlat" class="contact-form-flat">
+      <form id="contactForm" style="visibility: hidden;">
+        <input type="text" id="name" placeholder="Seu nome completo" disabled>
+        <input type="email" id="email" placeholder="Melhor e-mail" disabled>
+        <input type="tel" id="phone" placeholder="WhatsApp (com DDD)" disabled>
+        <textarea rows="4" id="message" placeholder="Conte-nos sobre seu negócio e o que você precisa..." disabled></textarea>
+        <button type="submit" class="btn-primary" disabled><i class="fab fa-whatsapp"></i> Enviar e falar agora</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+<script>
+  const PHONE = '558597374043';
+  function openWhatsApp(text = '') {
+    let msg = text || 'Olá! Gostaria de saber mais sobre a criação de sites profissionais.';
+    window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  // Conteúdo real com textos melhorados (cards sem ícones)
+  const realContent = {
+    heroTitle: "Seu negócio merece um site que não seja apenas bonito, mas que venda de verdade.",
+    heroLead: "Pare de perder clientes para a concorrência. Um site profissional é o primeiro passo para construir autoridade, gerar leads e multiplicar seu faturamento. Nós criamos soluções digitais sob medida, com foco em conversão e performance.",
+    statNumbers: ["98%", "+150%", "7 dias"],
+    statLabels: ["clientes satisfeitos", "aumento médio em leads", "entrega da primeira versão"],
+    benefits: [
+      { title: "Primeira impressão que vende", text: "Seu site é o cartão de visita mais importante do seu negócio. Um design amador espanta clientes; um site profissional transmite autoridade, confiança e credibilidade. Invista em quem entende de conversão." },
+      { title: "Gere leads 24 horas por dia", text: "Seu site nunca dorme. Enquanto você descansa, formulários inteligentes e CTAs estratégicos captam oportunidades. Mais de 70% dos consumidores pesquisam online antes de comprar – esteja pronto para recebê-los." },
+      { title: "Apareça no Google", text: "Código limpo, SEO na veia e velocidade extrema. Seu site será encontrado por quem realmente procura pelos seus serviços. Mais visibilidade = mais clientes. Sem segredo, só estratégia." },
+      { title: "Segurança e confiabilidade", text: "Hospedagem otimizada, proteção contra ameaças e backups automáticos. Seu negócio protegido contra imprevistos. Invista em tranquilidade e mantenha seus dados sempre seguros." }
+    ],
+    methodSteps: [
+      { number: "1", title: "Descoberta", desc: "Entendemos seu negócio, público-alvo e objetivos. Definimos as métricas de sucesso." },
+      { number: "2", title: "Estratégia UX", desc: "Criamos wireframes e jornadas que guiam o usuário até a conversão." },
+      { number: "3", title: "Design e Dev", desc: "Design moderno + código limpo e responsivo. Site rápido e otimizado." },
+      { number: "4", title: "Lançamento e Suporte", desc: "Treinamento, ajustes finos e acompanhamento para garantir resultados." }
+    ],
+    guarantee: {
+      title: "Garantia de satisfação ou seu dinheiro de volta",
+      text: "Você só paga quando estiver 100% satisfeito com o resultado. Oferecemos revisões ilimitadas até que o site atenda exatamente às suas expectativas."
+    },
+    faq: [
+      { q: "Quanto tempo leva para entregar meu site?", a: "O prazo médio é de 10 a 20 dias úteis. Sites institucionais simples em 10 dias. E-commerces e sistemas maiores levam um pouco mais, mas sempre com entregas parciais." },
+      { q: "Preciso saber programar para atualizar?", a: "Não! Desenvolvemos com CMS intuitivo (WordPress ou painel customizado). Você mesmo edita textos, fotos e produtos. Oferecemos planos de manutenção se preferir." },
+      { q: "Vocês cuidam da hospedagem?", a: "Podemos orientar na compra ou oferecer hospedagem otimizada, com alta performance e segurança. O domínio fica no seu nome, você tem total controle." },
+      { q: "E se precisar de alterações depois do site pronto?", a: "30 dias de suporte gratuito para pequenos ajustes. Para mudanças maiores, temos planos de manutenção contínua com preço acessível." },
+      { q: "O site será responsivo?", a: "Sim, 100% responsivo, testado em celulares, tablets e desktops. Garantimos experiência perfeita em qualquer dispositivo." },
+      { q: "Integram com Google Analytics e ferramentas de marketing?", a: "Sim! Fazemos integração com Analytics, Hotjar, RD Station e outras. Você acompanha métricas e otimiza resultados." },
+      { q: "É possível migrar meu site antigo?", a: "Com certeza. Migramos todo o conteúdo, URLs e autoridade SEO. Transição suave sem perda de posicionamento." }
+    ]
+  };
+
+  function loadRealContent() {
+    // Hero
+    document.getElementById('heroTitle').innerText = realContent.heroTitle;
+    document.getElementById('heroTitle').classList.remove('skeleton');
+    document.getElementById('heroLead').innerText = realContent.heroLead;
+    document.getElementById('heroLead').classList.remove('skeleton');
+    const statNumbers = document.querySelectorAll('#heroStats .number');
+    const statLabels = document.querySelectorAll('#heroStats .label');
+    statNumbers.forEach((el, idx) => { if (idx < realContent.statNumbers.length) { el.innerText = realContent.statNumbers[idx]; el.classList.remove('skeleton'); } });
+    statLabels.forEach((el, idx) => { if (idx < realContent.statLabels.length) { el.innerText = realContent.statLabels[idx]; el.classList.remove('skeleton'); } });
+
+    // Benefícios
+    document.getElementById('benefitsTitle').innerText = "Por que investir em um site profissional agora?";
+    document.getElementById('benefitsTitle').classList.remove('skeleton');
+    const benefitsGrid = document.getElementById('benefitsGrid');
+    benefitsGrid.innerHTML = '';
+    realContent.benefits.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'benefit-card';
+      card.innerHTML = `<h3>${b.title}</h3><p>${b.text}</p>`;
+      benefitsGrid.appendChild(card);
+    });
+
+    // Metodologia
+    document.getElementById('methodTitle').innerText = "Como transformamos sua ideia em um site de alto desempenho";
+    document.getElementById('methodTitle').classList.remove('skeleton');
+    const methodStepsDiv = document.getElementById('methodSteps');
+    methodStepsDiv.innerHTML = '';
+    realContent.methodSteps.forEach(s => {
+      const stepDiv = document.createElement('div');
+      stepDiv.className = 'step';
+      stepDiv.innerHTML = `<div class="step-number">${s.number}</div><h3>${s.title}</h3><p>${s.desc}</p>`;
+      methodStepsDiv.appendChild(stepDiv);
+    });
+
+    // Garantia
+    const guaranteeBlock = document.getElementById('guaranteeBlock');
+    guaranteeBlock.innerHTML = `
+      <i class="fas fa-medal" style="font-size: 2.5rem; color: var(--accent);"></i>
+      <h3>${realContent.guarantee.title}</h3>
+      <p class="text-large" style="max-width: 700px; margin: 16px auto;">${realContent.guarantee.text}</p>
+      <button class="btn-primary" id="guaranteeCta">Quero garantir meu site</button>
+    `;
+    document.getElementById('guaranteeCta')?.addEventListener('click', () => openWhatsApp('Quero garantir meu site com garantia de satisfação.'));
+
+    // FAQ
+    document.getElementById('faqTitle').innerText = "Respostas para suas dúvidas";
+    document.getElementById('faqTitle').classList.remove('skeleton');
+    const faqListDiv = document.getElementById('faqList');
+    faqListDiv.innerHTML = '';
+    realContent.faq.forEach(f => {
+      const faqItem = document.createElement('div');
+      faqItem.className = 'faq-item';
+      faqItem.innerHTML = `<div class="faq-question">${f.q} <i class="fas fa-chevron-down"></i></div><div class="faq-answer">${f.a}</div>`;
+      faqListDiv.appendChild(faqItem);
+    });
+    // Accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        item.classList.toggle('active');
+        const icon = question.querySelector('i');
+        if (icon) {
+          icon.classList.toggle('fa-chevron-up');
+          icon.classList.toggle('fa-chevron-down');
+        }
+      });
+    });
+
+    // Formulário
+    document.getElementById('contactTitle').innerText = "Vamos conversar sobre seu projeto?";
+    document.getElementById('contactTitle').classList.remove('skeleton');
+    const contactDiv = document.getElementById('contactFormFlat');
+    contactDiv.innerHTML = `
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Seu nome completo" required>
+        <input type="email" id="email" placeholder="Melhor e-mail" required>
+        <input type="tel" id="phone" placeholder="WhatsApp (com DDD)">
+        <textarea rows="4" id="message" placeholder="Conte-nos sobre seu negócio e o que você precisa..."></textarea>
+        <button type="submit" class="btn-primary"><i class="fab fa-whatsapp"></i> Enviar e falar agora</button>
+      </form>
+    `;
+    const newForm = document.getElementById('contactForm');
+    if (newForm) {
+      newForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if (!name || !email) { alert('Por favor, preencha nome e e-mail.'); return; }
+        let whatsMessage = `Olá! Meu nome é ${name}.%0AEmail: ${email}%0A`;
+        if (phone) whatsMessage += `WhatsApp: ${phone}%0A`;
+        whatsMessage += `%0A Mensagem: ${message || 'Gostaria de um orçamento para site.'}`;
+        window.open(`https://wa.me/${PHONE}?text=${whatsMessage}`, '_blank');
+      });
+    }
+  }
+
+  setTimeout(loadRealContent, 1000);
+</script>
+</body>
+</html>
