@@ -122,7 +122,7 @@
       opacity: 0.92;
       box-shadow: 0 4px 12px rgba(124,92,255,0.3);
     }
-    /* Skeleton loading responsivo */
+    /* Skeleton loading */
     .skeleton {
       background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
       background-size: 200% 100%;
@@ -137,78 +137,22 @@
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
-    .hero {
-      margin: 40px 0 60px;
-      text-align: left;
-    }
-    .hero-stats {
-      display: flex;
-      justify-content: flex-start;
-      gap: clamp(20px, 5vw, 48px);
-      margin: 48px 0 32px;
-      flex-wrap: wrap;
-    }
-    .hero-stats .number {
-      font-size: clamp(1.6rem, 5vw, 2.2rem);
-      font-weight: 800;
-      font-family: 'Space Grotesk', sans-serif;
-      color: var(--accent);
-    }
-    .hero-stats .label {
-      color: var(--muted);
-      font-size: clamp(0.7rem, 3vw, 0.85rem);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    /* Grid para itens com barrinha lateral */
-    .plain-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-      margin: 48px 0;
-    }
-    .plain-item {
-      display: flex;
-      gap: 16px;
-      align-items: stretch;
-    }
+    /* Barras laterais com gradiente animado infinito */
     .plain-item .bar {
       width: 4px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent));
+      background-size: 200% 200%;
+      animation: gradientMove 3s ease infinite;
       border-radius: 4px;
       flex-shrink: 0;
     }
-    .plain-item .content {
-      flex: 1;
-    }
-    .plain-item .content h3 {
-      font-size: clamp(1.2rem, 4vw, 1.4rem);
-      margin-bottom: 12px;
-    }
-    .plain-item .content p {
-      color: var(--text-secondary);
-      line-height: 1.6;
-      font-size: clamp(0.9rem, 3.5vw, 1rem);
-    }
-    /* Metodologia (cards) */
-    .method-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-      margin: 40px 0;
-    }
-    .step {
-      text-align: center;
-      background: var(--surface);
-      border-radius: 24px;
-      padding: 24px 16px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
+    /* Números dos passos da metodologia com gradiente animado */
     .step .step-number {
       width: 48px;
       height: 48px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent));
+      background-size: 200% 200%;
+      animation: gradientMove 3s ease infinite;
       border-radius: 60px;
       display: flex;
       align-items: center;
@@ -218,21 +162,17 @@
       font-size: 1.4rem;
       color: #ffffff;
     }
-    .step h3 {
-      font-size: clamp(1.1rem, 3.5vw, 1.3rem);
-      margin-bottom: 8px;
+    @keyframes gradientMove {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
     }
-    .step p {
-      color: var(--text-secondary);
-      font-size: clamp(0.85rem, 3vw, 0.95rem);
-    }
-    /* Seção de oferta - CORREÇÃO DO PREÇO RESPONSIVO */
-    .offer-section {
-      margin: 60px 0;
-      text-align: left;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 48px 0;
+    /* Números das estatísticas e preço sem gradiente animado (cor sólida) */
+    .hero-stats .number {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 800;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--accent);
     }
     .offer-section .price {
       font-size: clamp(2rem, 8vw, 2.8rem);
@@ -249,6 +189,76 @@
         font-size: 2rem;
         word-break: break-word;
       }
+    }
+    /* Demais estilos */
+    .hero {
+      margin: 40px 0 60px;
+      text-align: left;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: flex-start;
+      gap: clamp(20px, 5vw, 48px);
+      margin: 48px 0 32px;
+      flex-wrap: wrap;
+    }
+    .hero-stats .label {
+      color: var(--muted);
+      font-size: clamp(0.7rem, 3vw, 0.85rem);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .plain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin: 48px 0;
+    }
+    .plain-item {
+      display: flex;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .plain-item .content {
+      flex: 1;
+    }
+    .plain-item .content h3 {
+      font-size: clamp(1.2rem, 4vw, 1.4rem);
+      margin-bottom: 12px;
+    }
+    .plain-item .content p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
+    }
+    .method-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+    .step {
+      text-align: center;
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 24px 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .step h3 {
+      font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+      margin-bottom: 8px;
+    }
+    .step p {
+      color: var(--text-secondary);
+      font-size: clamp(0.85rem, 3vw, 0.95rem);
+    }
+    .offer-section {
+      margin: 60px 0;
+      text-align: left;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0;
     }
     .offer-section .delivery {
       font-weight: 600;
@@ -286,13 +296,12 @@
       padding-left: 20px;
       font-size: clamp(0.9rem, 3.5vw, 1rem);
     }
-    /* FAQ (cards) */
+    .faq-list {
+      margin: 40px 0;
+    }
     .faq-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      margin-bottom: 16px;
-      padding: 0 20px;
+      border-bottom: 1px solid var(--border);
+      padding: 0;
       cursor: pointer;
       transition: 0.2s;
     }
@@ -308,18 +317,19 @@
     .faq-answer {
       max-height: 0;
       overflow: hidden;
-      transition: 0.3s;
+      transition: 0.3s ease;
       color: var(--text-secondary);
       line-height: 1.6;
       font-size: clamp(0.85rem, 3.5vw, 0.95rem);
     }
     .faq-item.active .faq-answer {
-      max-height: 300px;
-      padding-bottom: 20px;
+      max-height: 500px;
+      padding-bottom: 24px;
     }
     .faq-question i {
       color: var(--accent);
       transition: 0.2s;
+      font-size: 1rem;
     }
     @media (max-width: 640px) {
       .hero-stats { gap: 24px; justify-content: flex-start; }
@@ -352,26 +362,22 @@
     </div>
   </section>
 
-  <!-- Seção "Por que investir" com barrinhas -->
   <section>
     <h2 id="benefitsTitle" class="skeleton" style="width: 80%; min-height: 2rem;">Por que investir em um site profissional agora?</h2>
     <div class="plain-grid" id="benefitsPlain"></div>
   </section>
 
-  <!-- Metodologia (cards) -->
   <section>
     <h2 id="methodTitle" class="skeleton" style="width: 70%; min-height: 2rem;">Como transformamos sua ideia em um site de alto desempenho</h2>
     <div class="method-steps" id="methodSteps"></div>
   </section>
 
-  <!-- SEÇÃO DE OFERTA COM PLACEHOLDERS E PREÇO RESPONSIVO -->
   <section class="offer-section">
     <h2 class="skeleton" style="width: 300px; max-width: 90%; min-height: 2rem;">Site profissional por um valor justo</h2>
     <div class="price skeleton" style="width: auto; max-width: 100%; min-height: 3rem; display: inline-block;">R$ 49 por mês</div>
     <div class="delivery skeleton" style="width: 280px; max-width: 90%; min-height: 1.5rem;">Entregamos em até 3 dias úteis</div>
     <p class="offer-description skeleton" style="width: 100%; min-height: 3rem;">Sem taxas de setup, sem contrato de fidelidade. Você só começa a pagar depois que o site estiver no ar e aprovado.</p>
     
-    <!-- Lista com placeholders -->
     <ul class="plain-text-list" id="plainTextList">
       <li class="skeleton" style="margin-bottom: 12px; height: 1.5rem; width: 95%;"></li>
       <li class="skeleton" style="margin-bottom: 12px; height: 1.5rem; width: 98%;"></li>
@@ -388,7 +394,6 @@
     </div>
   </section>
 
-  <!-- FAQ (cards) -->
   <section>
     <h2 id="faqTitle" class="skeleton" style="width: 60%; min-height: 2rem;">Respostas para suas dúvidas</h2>
     <div class="faq-list" id="faqList"></div>
@@ -396,10 +401,8 @@
 </div>
 
 <script>
-  // Número atualizado
   const PHONE = '5585982300142';
 
-  // Dados dos benefícios com barrinhas
   const benefitsData = [
     { title: "Primeira impressão que vende", text: "Seu site é o cartão de visita mais importante do seu negócio. Um design amador espanta clientes; um site profissional transmite autoridade, confiança e credibilidade. Invista em quem entende de conversão." },
     { title: "Gere leads 24 horas por dia", text: "Seu site nunca dorme. Enquanto você descansa, formulários inteligentes e CTAs estratégicos captam oportunidades. Mais de 70% dos consumidores pesquisam online antes de comprar – esteja pronto para recebê-los." },
@@ -418,15 +421,19 @@
     { q: "Quanto tempo leva para entregar meu site?", a: "No plano de R$49/mês, o site fica pronto em até 3 dias úteis. Para projetos mais complexos, o prazo é combinado." },
     { q: "Por que o valor é tão acessível?", a: "Porque trabalhamos com um modelo direto, sem custos de agência, com tecnologia eficiente e foco em entregar valor sem desperdício. Você paga apenas pelo que realmente importa." },
     { q: "Preciso saber programar para atualizar?", a: "Não! Desenvolvemos com CMS intuitivo (WordPress ou painel customizado). Você mesmo edita textos, fotos e produtos." },
+    { q: "Vocês criam qualquer tipo de site?", a: "Sim! Criamos sites institucionais, landing pages, blogs, portfólios, e-commerces (com integração de pagamento) e sistemas personalizados. Conte sua ideia e vamos conversar." },
     { q: "O que está incluído nos R$49/mês?", a: "Hospedagem na Netlify, domínio personalizado (ou subdomínio), manutenção mensal, suporte e atualizações de segurança. Sem surpresas." },
+    { q: "Vocês escrevem os textos ou eu preciso fornecer?", a: "Você pode fornecer os textos prontos. Mas se precisar de ajuda, podemos sugerir estrutura e copy básica sem custo adicional – ou indicar redatores parceiros." },
     { q: "Posso cancelar a qualquer momento?", a: "Sim, sem multa. Você só paga enquanto estiver satisfeito. Os dados do site são exportáveis." },
+    { q: "O que acontece se eu não gostar do design?", a: "Oferecemos revisões ilimitadas até que o design atenda exatamente ao que você espera. Só finalizamos o projeto com sua aprovação." },
     { q: "O site será responsivo?", a: "Sim, 100% responsivo, testado em celulares, tablets e desktops." },
+    { q: "Preciso instalar alguma coisa no meu computador?", a: "Não. Todo o desenvolvimento é feito online. Você só precisa de um navegador e acesso à internet. Nós cuidamos de toda a parte técnica." },
     { q: "Como funciona o SEO incluso?", a: "Configuramos a base do SEO: títulos, descrições, URLs amigáveis, estrutura de headings, velocidade e integração com Google Search Console. Você começa à frente da concorrência." },
+    { q: "Vocês garantem que meu site vai aparecer no Google?", a: "Não podemos garantir posição número 1, porque isso depende da concorrência e de investimento contínuo em SEO. Mas entregamos a base correta (meta tags, URLs amigáveis, velocidade, headings, sitemap) para que você comece à frente de quem não tem nada otimizado." },
     { q: "É possível migrar meu site antigo?", a: "Sim, fazemos migração completa sem perda de conteúdo e SEO." }
   ];
 
   function loadRealContent() {
-    // Hero
     document.getElementById('heroTitle').innerText = "Seu negócio merece um site que não seja apenas bonito, mas que venda de verdade.";
     document.getElementById('heroTitle').classList.remove('skeleton');
     document.getElementById('heroLead').innerText = "Pare de perder clientes para a concorrência. Um site profissional é o primeiro passo para construir autoridade, gerar leads e multiplicar seu faturamento. Nós criamos soluções digitais sob medida, com foco em conversão e performance.";
@@ -438,7 +445,6 @@
     statNumbers.forEach((el, idx) => { if (idx < statsVals.length) { el.innerText = statsVals[idx]; el.classList.remove('skeleton'); } });
     statLabels.forEach((el, idx) => { if (idx < statsLabs.length) { el.innerText = statsLabs[idx]; el.classList.remove('skeleton'); } });
 
-    // Benefícios com barrinhas
     document.getElementById('benefitsTitle').innerText = "Por que investir em um site profissional agora?";
     document.getElementById('benefitsTitle').classList.remove('skeleton');
     const benefitsContainer = document.getElementById('benefitsPlain');
@@ -446,17 +452,10 @@
     benefitsData.forEach(b => {
       const div = document.createElement('div');
       div.className = 'plain-item';
-      div.innerHTML = `
-        <div class="bar"></div>
-        <div class="content">
-          <h3>${b.title}</h3>
-          <p>${b.text}</p>
-        </div>
-      `;
+      div.innerHTML = `<div class="bar"></div><div class="content"><h3>${b.title}</h3><p>${b.text}</p></div>`;
       benefitsContainer.appendChild(div);
     });
 
-    // Metodologia
     document.getElementById('methodTitle').innerText = "Como transformamos sua ideia em um site de alto desempenho";
     document.getElementById('methodTitle').classList.remove('skeleton');
     const methodContainer = document.getElementById('methodSteps');
@@ -468,26 +467,21 @@
       methodContainer.appendChild(step);
     });
 
-    // Preencher textos da seção de oferta
     const offerSection = document.querySelector('.offer-section');
     offerSection.querySelector('h2').innerText = "Site profissional por um valor justo";
     offerSection.querySelector('h2').classList.remove('skeleton');
-    
     const priceEl = offerSection.querySelector('.price');
     priceEl.innerText = "R$ 49 por mês";
     priceEl.classList.remove('skeleton');
     priceEl.style.width = 'auto';
     priceEl.style.display = 'inline-block';
-    
     const deliveryEl = offerSection.querySelector('.delivery');
     deliveryEl.innerText = "Entregamos em até 3 dias úteis";
     deliveryEl.classList.remove('skeleton');
-    
     const descParagraphs = offerSection.querySelectorAll('.offer-description');
     descParagraphs[0].innerText = "Sem taxas de setup, sem contrato de fidelidade. Você só começa a pagar depois que o site estiver no ar e aprovado.";
     descParagraphs[0].classList.remove('skeleton');
 
-    // Lista de itens
     const listItems = [
       "Direto ao ponto: Sem burocracia, sem custos com agências inflacionadas. O preço baixo reflete um modelo enxuto e eficiente.",
       "Tecnologia própria: Utilizamos ferramentas modernas e otimizadas que reduzem o custo de manutenção e hospedagem.",
@@ -507,24 +501,18 @@
       listContainer.appendChild(li);
     });
 
-    // Bloco Netlify
     const hostingDiv = document.getElementById('hostingBlock');
     hostingDiv.classList.remove('skeleton');
-    hostingDiv.innerHTML = `<strong>Hospedagem de alta performance na Netlify</strong><br>
-      Seu site será hospedado na Netlify, a mesma plataforma utilizada por gigantes como Spotify, Google, Facebook e Unilever. Infraestrutura global, CDN ultrarrápida, segurança e disponibilidade 99,9%. Você tem a confiabilidade das grandes marcas pagando uma fração do custo.`;
+    hostingDiv.innerHTML = `<strong>Hospedagem de alta performance na Netlify</strong><br>Seu site será hospedado na Netlify, a mesma plataforma utilizada por gigantes como Spotify, Google, Facebook e Unilever. Infraestrutura global, CDN ultrarrápida, segurança e disponibilidade 99,9%. Você tem a confiabilidade das grandes marcas pagando uma fração do custo.`;
 
-    // Bloco SEO
     const seoDiv = document.getElementById('seoBlock');
     seoDiv.classList.remove('skeleton');
-    seoDiv.innerHTML = `<strong>SEO otimizado para você aparecer no Google</strong><br>
-      Não adianta ter um site bonito se ninguém encontra. Por isso, cada projeto já nasce com estrutura SEO-friendly: URLs amigáveis, meta tags, velocidade de carregamento otimizada, headings semânticos e compatibilidade com Google Search Console. Você ganha posições e atrai clientes organicamente.`;
+    seoDiv.innerHTML = `<strong>SEO otimizado para você aparecer no Google</strong><br>Não adianta ter um site bonito se ninguém encontra. Por isso, cada projeto já nasce com estrutura SEO-friendly: URLs amigáveis, meta tags, velocidade de carregamento otimizada, headings semânticos e compatibilidade com Google Search Console. Você ganha posições e atrai clientes organicamente.`;
 
-    // Texto "Incluso"
     const inclusoSpan = document.getElementById('inclusoText');
     inclusoSpan.innerText = "Incluso: design responsivo, SEO básico, formulário de contato, domínio personalizado (ou subdomínio) e suporte mensal.";
     inclusoSpan.classList.remove('skeleton');
 
-    // Botão
     const buttonDiv = document.getElementById('offerButton');
     buttonDiv.innerHTML = '';
     const btn = document.createElement('a');
@@ -534,7 +522,6 @@
     btn.innerHTML = '<i class="fab fa-whatsapp"></i> Fale comigo agora';
     buttonDiv.appendChild(btn);
 
-    // FAQ
     document.getElementById('faqTitle').innerText = "Respostas para suas dúvidas";
     document.getElementById('faqTitle').classList.remove('skeleton');
     const faqContainer = document.getElementById('faqList');
@@ -542,7 +529,13 @@
     faqData.forEach(f => {
       const faqItem = document.createElement('div');
       faqItem.className = 'faq-item';
-      faqItem.innerHTML = `<div class="faq-question">${f.q} <i class="fas fa-chevron-down"></i></div><div class="faq-answer">${f.a}</div>`;
+      faqItem.innerHTML = `
+        <div class="faq-question">
+          ${f.q}
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">${f.a}</div>
+      `;
       faqContainer.appendChild(faqItem);
     });
     document.querySelectorAll('.faq-item').forEach(item => {
