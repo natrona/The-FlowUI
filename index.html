@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <meta name="description" content="The FlowUI - Criação de sites profissionais por apenas R$49/mês. Site pronto em até 3 dias. Hospedagem na Netlify, SEO otimizado e performance.">
-  <title>The FlowUI | R$49/mês - Site em 3 dias</title>
+  <title>The FlowUI | Crie seu site</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -93,8 +93,11 @@
       color: var(--text-secondary);
       font-size: clamp(0.7rem, 3vw, 0.85rem);
     }
+    /* Botão principal com gradiente animado contínuo */
     .btn-primary {
-      background: linear-gradient(95deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent), var(--accent-2));
+      background-size: 300% 300%;
+      animation: gradientFlow 4s linear infinite;
       border: none;
       padding: 12px 24px;
       border-radius: 40px;
@@ -108,6 +111,10 @@
       text-decoration: none;
       text-align: center;
       white-space: nowrap;
+    }
+    @keyframes gradientFlow {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
     }
     @media (max-width: 480px) {
       .btn-primary {
@@ -137,7 +144,7 @@
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
-    /* Barras laterais com gradiente animado contínuo (linear, sem vai-e-volta) */
+    /* Barras laterais com gradiente animado contínuo */
     .plain-item .bar {
       width: 4px;
       background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent), var(--accent-2));
@@ -162,10 +169,6 @@
       font-size: 1.4rem;
       color: #ffffff;
     }
-    @keyframes gradientFlow {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 100% 100%; }
-    }
     /* Números das estatísticas e preço sem gradiente animado (cor sólida) */
     .hero-stats .number {
       font-size: clamp(1.6rem, 5vw, 2.2rem);
@@ -189,7 +192,7 @@
         word-break: break-word;
       }
     }
-    /* Demais estilos */
+    /* Demais estilos - 100% adaptáveis */
     .hero {
       margin: 40px 0 60px;
       text-align: left;
@@ -210,7 +213,7 @@
     .plain-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
+      gap: clamp(24px, 4vw, 32px);
       margin: 48px 0;
     }
     .plain-item {
@@ -233,7 +236,7 @@
     .method-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
+      gap: clamp(20px, 3vw, 24px);
       margin: 40px 0;
     }
     .step {
@@ -330,12 +333,48 @@
       transition: 0.2s;
       font-size: 1rem;
     }
+    /* Ajustes para garantir simetria em telas muito pequenas */
     @media (max-width: 640px) {
-      .hero-stats { gap: 24px; justify-content: flex-start; }
-      .plain-grid { gap: 24px; }
-      .method-steps { gap: 16px; }
-      .offer-section { padding: 32px 0; }
-      .hosting-info, .seo-info { padding-left: 12px; }
+      .wrap {
+        padding: 16px;
+      }
+      .hero-stats {
+        gap: 20px;
+        justify-content: space-between;
+      }
+      .hero-stats div {
+        flex: 1;
+        text-align: center;
+      }
+      .plain-grid, .method-steps {
+        gap: 20px;
+      }
+      .step {
+        padding: 20px 12px;
+      }
+      .offer-section {
+        padding: 32px 0;
+      }
+      .hosting-info, .seo-info {
+        padding-left: 12px;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-stats {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .hero-stats div {
+        text-align: left;
+        width: 100%;
+      }
+      .plain-grid {
+        grid-template-columns: 1fr;
+      }
+      .method-steps {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
