@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <meta name="description" content="The FlowUI - Criação de sites profissionais que vendem. Design estratégico, código otimizado e foco em resultados.">
-  <title>The FlowUI | Criação de Sites que Vendem</title>
+  <meta name="description" content="The FlowUI - Criação de sites profissionais por apenas R$49/mês. Site pronto em até 3 dias. Hospedagem na Netlify, mesma estrutura de grandes marcas.">
+  <title>The FlowUI | R$49/mês - Site em 3 dias</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -104,6 +104,8 @@
       transition: 0.2s;
       font-size: 1rem;
       box-shadow: 0 2px 8px rgba(124,92,255,0.2);
+      display: inline-block;
+      text-decoration: none;
     }
     .btn-primary:hover {
       transform: scale(0.97);
@@ -145,22 +147,36 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    /* Seções sem cards: apenas grid de textos */
+    /* Grid para itens com barrinha lateral */
     .plain-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 32px;
       margin: 48px 0;
     }
-    .plain-item h3 {
+    .plain-item {
+      display: flex;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .plain-item .bar {
+      width: 4px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .plain-item .content {
+      flex: 1;
+    }
+    .plain-item .content h3 {
       font-size: 1.4rem;
       margin-bottom: 12px;
     }
-    .plain-item p {
+    .plain-item .content p {
       color: var(--text-secondary);
       line-height: 1.6;
     }
-    /* Metodologia (com cards) */
+    /* Metodologia (cards) */
     .method-steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -194,32 +210,55 @@
     .step p {
       color: var(--text-secondary);
     }
-    /* Resultados (com cards) */
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin: 48px 0;
+    /* Seção de oferta dedicada - agora com textos diretos e explicação da Netlify */
+    .offer-section {
+      margin: 60px 0;
+      text-align: left;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0;
     }
-    .result-card {
-      background: linear-gradient(135deg, rgba(124,92,255,0.03), rgba(0,230,168,0.01));
-      border-radius: 28px;
-      padding: 32px 24px;
-      text-align: center;
-      border: 1px solid var(--border);
-    }
-    .result-card .result-number {
+    .offer-section .price {
       font-size: 2.8rem;
       font-weight: 800;
       font-family: 'Space Grotesk', sans-serif;
       color: var(--accent);
-      margin-bottom: 8px;
+      margin: 16px 0 8px;
     }
-    .result-card p {
+    .offer-section .delivery {
+      font-weight: 600;
+      color: var(--accent-2);
+      font-size: 1.1rem;
+      margin: 8px 0 12px;
+    }
+    .offer-section .offer-description {
       color: var(--text-secondary);
-      font-size: 1rem;
+      max-width: 700px;
+      margin: 16px 0 16px;
+      line-height: 1.6;
     }
-    /* FAQ (com cards) */
+    .plain-text-list {
+      margin: 20px 0;
+      list-style: none;
+    }
+    .plain-text-list li {
+      margin-bottom: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .plain-text-list li strong {
+      color: var(--accent);
+    }
+    .hosting-info {
+      background: transparent;
+      padding: 16px 0;
+      margin: 16px 0;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+    }
+    /* FAQ (cards) */
     .faq-item {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -256,11 +295,11 @@
     @media (max-width: 980px) {
       .plain-grid { grid-template-columns: 1fr; }
       .method-steps { grid-template-columns: repeat(2,1fr); }
-      .results-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .method-steps { grid-template-columns: 1fr; }
       .hero-stats { gap: 24px; justify-content: flex-start; }
+      .offer-section .price { font-size: 2rem; }
     }
   </style>
 </head>
@@ -286,35 +325,50 @@
     </div>
   </section>
 
-  <!-- Seção "Por que investir" - sem cards, texto direto -->
+  <!-- Seção "Por que investir" com barrinhas -->
   <section>
     <h2 id="benefitsTitle" class="skeleton">Por que investir em um site profissional agora?</h2>
     <div class="plain-grid" id="benefitsPlain"></div>
   </section>
 
-  <!-- Metodologia (com cards) -->
+  <!-- Metodologia (cards) -->
   <section>
     <h2 id="methodTitle" class="skeleton">Como transformamos sua ideia em um site de alto desempenho</h2>
     <div class="method-steps" id="methodSteps"></div>
   </section>
 
-  <!-- Seção "Diferenciais" - sem cards, texto direto -->
-  <section>
-    <h2>Diferenciais que fazem a diferença</h2>
-    <div class="plain-grid" id="differentialsPlain"></div>
-  </section>
+  <!-- SEÇÃO DE OFERTA COMPLETA COM TEXTOS DIRETOS (SEM CARDS) E HOSPEDAGEM NETLIFY -->
+  <section class="offer-section">
+    <h2>Site profissional por um valor justo</h2>
+    <div class="price">R$ 49 por mês</div>
+    <div class="delivery">Entregamos em até 3 dias úteis</div>
+    <p class="offer-description">
+      Sem taxas de setup, sem contrato de fidelidade. Você só começa a pagar depois que o site estiver no ar e aprovado.
+    </p>
+    
+    <!-- Textos diretos sem cards -->
+    <ul class="plain-text-list">
+      <li><strong>Direto ao ponto:</strong> Sem burocracia, sem custos com agências inflacionadas. O preço baixo reflete um modelo enxuto e eficiente.</li>
+      <li><strong>Tecnologia própria:</strong> Utilizamos ferramentas modernas e otimizadas que reduzem o custo de manutenção e hospedagem.</li>
+      <li><strong>Sem intermediários:</strong> Você fala diretamente com quem desenvolve. Isso elimina repasses e torna o valor acessível.</li>
+    </ul>
 
-  <!-- Seção Resultados (com cards) -->
-  <section>
-    <h2>Resultados que comprovam</h2>
-    <div class="results-grid" id="resultsGrid">
-      <div class="result-card"><div class="result-number">+312%</div><p>de aumento em leads orgânicos para clientes de serviços</p></div>
-      <div class="result-card"><div class="result-number">47%</div><p>mais conversão em landing pages após redesign</p></div>
-      <div class="result-card"><div class="result-number">0</div><p>dias de downtime – infraestrutura confiável</p></div>
+    <!-- Informação sobre Netlify -->
+    <div class="hosting-info">
+      <strong>Hospedagem de alta performance na Netlify</strong><br>
+      Seu site será hospedado na Netlify, a mesma plataforma utilizada por gigantes como Spotify, Google, Facebook e Unilever. Infraestrutura global, CDN ultrarrápida, segurança e disponibilidade 99,9%. Você tem a confiabilidade das grandes marcas pagando uma fração do custo.
     </div>
+
+    <p class="offer-description" style="margin-top: 8px;">
+      Incluso: design responsivo, SEO básico, formulário de contato, domínio personalizado (ou subdomínio) e suporte mensal.
+    </p>
+    
+    <a href="https://wa.me/558597374043?text=Olá! Quero meu site por R$49/mês e em até 3 dias." class="btn-primary" target="_blank">
+      <i class="fab fa-whatsapp"></i> Fale comigo agora
+    </a>
   </section>
 
-  <!-- FAQ (com cards) -->
+  <!-- FAQ (cards) -->
   <section>
     <h2 id="faqTitle" class="skeleton">Respostas para suas dúvidas</h2>
     <div class="faq-list" id="faqList"></div>
@@ -322,19 +376,12 @@
 </div>
 
 <script>
-  // Dados das seções sem cards
+  // Dados dos benefícios com barrinhas
   const benefitsData = [
     { title: "Primeira impressão que vende", text: "Seu site é o cartão de visita mais importante do seu negócio. Um design amador espanta clientes; um site profissional transmite autoridade, confiança e credibilidade. Invista em quem entende de conversão." },
     { title: "Gere leads 24 horas por dia", text: "Seu site nunca dorme. Enquanto você descansa, formulários inteligentes e CTAs estratégicos captam oportunidades. Mais de 70% dos consumidores pesquisam online antes de comprar – esteja pronto para recebê-los." },
     { title: "Apareça no Google", text: "Código limpo, SEO na veia e velocidade extrema. Seu site será encontrado por quem realmente procura pelos seus serviços. Mais visibilidade = mais clientes. Sem segredo, só estratégia." },
     { title: "Segurança e confiabilidade", text: "Hospedagem otimizada, proteção contra ameaças e backups automáticos. Seu negócio protegido contra imprevistos. Invista em tranquilidade e mantenha seus dados sempre seguros." }
-  ];
-
-  const differentialsData = [
-    { title: "Atendimento humano", text: "Conversamos de verdade, sem robôs. Do briefing ao lançamento, você tem um parceiro." },
-    { title: "Código limpo e documentado", text: "Manutenção fácil, SEO amigável e performance impecável." },
-    { title: "Velocidade garantida", text: "Sites otimizados que carregam em menos de 1 segundo – essencial para conversão." },
-    { title: "Treinamento incluso", text: "Você aprende a gerenciar seu conteúdo sem depender de terceiros." }
   ];
 
   const methodStepsData = [
@@ -345,13 +392,14 @@
   ];
 
   const faqData = [
-    { q: "Quanto tempo leva para entregar meu site?", a: "O prazo médio é de 10 a 20 dias úteis. Sites institucionais simples em 10 dias. E-commerces e sistemas maiores levam um pouco mais, mas sempre com entregas parciais." },
-    { q: "Preciso saber programar para atualizar?", a: "Não! Desenvolvemos com CMS intuitivo (WordPress ou painel customizado). Você mesmo edita textos, fotos e produtos. Oferecemos planos de manutenção se preferir." },
-    { q: "Vocês cuidam da hospedagem?", a: "Podemos orientar na compra ou oferecer hospedagem otimizada, com alta performance e segurança. O domínio fica no seu nome, você tem total controle." },
-    { q: "E se precisar de alterações depois do site pronto?", a: "30 dias de suporte gratuito para pequenos ajustes. Para mudanças maiores, temos planos de manutenção contínua com preço acessível." },
-    { q: "O site será responsivo?", a: "Sim, 100% responsivo, testado em celulares, tablets e desktops. Garantimos experiência perfeita em qualquer dispositivo." },
-    { q: "Integram com Google Analytics e ferramentas de marketing?", a: "Sim! Fazemos integração com Analytics, Hotjar, RD Station e outras. Você acompanha métricas e otimiza resultados." },
-    { q: "É possível migrar meu site antigo?", a: "Com certeza. Migramos todo o conteúdo, URLs e autoridade SEO. Transição suave sem perda de posicionamento." }
+    { q: "Quanto tempo leva para entregar meu site?", a: "No plano de R$49/mês, o site fica pronto em até 3 dias úteis. Para projetos mais complexos, o prazo é combinado." },
+    { q: "Por que o valor é tão acessível?", a: "Porque trabalhamos com um modelo direto, sem custos de agência, com tecnologia eficiente e foco em entregar valor sem desperdício. Você paga apenas pelo que realmente importa." },
+    { q: "Preciso saber programar para atualizar?", a: "Não! Desenvolvemos com CMS intuitivo (WordPress ou painel customizado). Você mesmo edita textos, fotos e produtos." },
+    { q: "O que está incluído nos R$49/mês?", a: "Hospedagem na Netlify, domínio personalizado (ou subdomínio), manutenção mensal, suporte e atualizações de segurança. Sem surpresas." },
+    { q: "Posso cancelar a qualquer momento?", a: "Sim, sem multa. Você só paga enquanto estiver satisfeito. Os dados do site são exportáveis." },
+    { q: "O site será responsivo?", a: "Sim, 100% responsivo, testado em celulares, tablets e desktops." },
+    { q: "Você faz integração com Google Analytics?", a: "Sim! Incluímos configuração básica de analytics e ferramentas de rastreio." },
+    { q: "É possível migrar meu site antigo?", a: "Sim, fazemos migração completa sem perda de conteúdo e SEO." }
   ];
 
   function loadRealContent() {
@@ -367,7 +415,7 @@
     statNumbers.forEach((el, idx) => { if (idx < statsVals.length) { el.innerText = statsVals[idx]; el.classList.remove('skeleton'); } });
     statLabels.forEach((el, idx) => { if (idx < statsLabs.length) { el.innerText = statsLabs[idx]; el.classList.remove('skeleton'); } });
 
-    // Benefícios sem cards
+    // Benefícios com barrinhas
     document.getElementById('benefitsTitle').innerText = "Por que investir em um site profissional agora?";
     document.getElementById('benefitsTitle').classList.remove('skeleton');
     const benefitsContainer = document.getElementById('benefitsPlain');
@@ -375,11 +423,17 @@
     benefitsData.forEach(b => {
       const div = document.createElement('div');
       div.className = 'plain-item';
-      div.innerHTML = `<h3>${b.title}</h3><p>${b.text}</p>`;
+      div.innerHTML = `
+        <div class="bar"></div>
+        <div class="content">
+          <h3>${b.title}</h3>
+          <p>${b.text}</p>
+        </div>
+      `;
       benefitsContainer.appendChild(div);
     });
 
-    // Metodologia com cards
+    // Metodologia
     document.getElementById('methodTitle').innerText = "Como transformamos sua ideia em um site de alto desempenho";
     document.getElementById('methodTitle').classList.remove('skeleton');
     const methodContainer = document.getElementById('methodSteps');
@@ -389,16 +443,6 @@
       step.className = 'step';
       step.innerHTML = `<div class="step-number">${s.number}</div><h3>${s.title}</h3><p>${s.desc}</p>`;
       methodContainer.appendChild(step);
-    });
-
-    // Diferenciais sem cards
-    const diffContainer = document.getElementById('differentialsPlain');
-    diffContainer.innerHTML = '';
-    differentialsData.forEach(d => {
-      const div = document.createElement('div');
-      div.className = 'plain-item';
-      div.innerHTML = `<h3>${d.title}</h3><p>${d.text}</p>`;
-      diffContainer.appendChild(div);
     });
 
     // FAQ
