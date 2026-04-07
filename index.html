@@ -47,20 +47,20 @@
       color: var(--text-primary);
     }
     h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(1.8rem, 6vw, 3.2rem);
       line-height: 1.2;
       margin-bottom: 1.2rem;
     }
     h2 {
-      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-size: clamp(1.6rem, 5vw, 2.5rem);
       margin-bottom: 1rem;
     }
     h3 {
-      font-size: 1.4rem;
+      font-size: clamp(1.2rem, 4vw, 1.4rem);
       margin-bottom: 0.8rem;
     }
     .lead {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 4vw, 1.2rem);
       line-height: 1.6;
       color: var(--text-secondary);
       margin-bottom: 2rem;
@@ -86,33 +86,43 @@
       gap: 12px;
     }
     .brand-info h2 {
-      font-size: 1.3rem;
+      font-size: clamp(1.1rem, 4vw, 1.3rem);
       margin-bottom: 0;
     }
     .brand-info p {
       color: var(--text-secondary);
-      font-size: 0.85rem;
+      font-size: clamp(0.7rem, 3vw, 0.85rem);
     }
     .btn-primary {
       background: linear-gradient(95deg, var(--accent), var(--accent-2));
       border: none;
-      padding: 12px 32px;
+      padding: 12px 24px;
       border-radius: 40px;
       font-weight: 700;
       color: #ffffff;
       cursor: pointer;
       transition: 0.2s;
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
       box-shadow: 0 2px 8px rgba(124,92,255,0.2);
       display: inline-block;
       text-decoration: none;
+      text-align: center;
+      white-space: nowrap;
+    }
+    @media (max-width: 480px) {
+      .btn-primary {
+        white-space: normal;
+        padding: 10px 16px;
+        width: 100%;
+        max-width: 280px;
+      }
     }
     .btn-primary:hover {
       transform: scale(0.97);
       opacity: 0.92;
       box-shadow: 0 4px 12px rgba(124,92,255,0.3);
     }
-    /* Skeleton loading - versão melhorada para mobile */
+    /* Skeleton loading responsivo */
     .skeleton {
       background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
       background-size: 200% 100%;
@@ -127,25 +137,6 @@
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
-    /* Estilos específicos para skeletons de lista e blocos */
-    .skeleton-list-item {
-      list-style: none;
-      margin-bottom: 12px;
-      height: 1.5rem;
-      border-radius: 8px;
-    }
-    .skeleton-block {
-      padding: 16px 0;
-      margin: 16px 0;
-      border-radius: 12px;
-    }
-    .skeleton-button {
-      display: inline-block;
-      width: 200px;
-      height: 48px;
-      border-radius: 40px;
-      margin-top: 16px;
-    }
     .hero {
       margin: 40px 0 60px;
       text-align: left;
@@ -153,26 +144,26 @@
     .hero-stats {
       display: flex;
       justify-content: flex-start;
-      gap: 48px;
+      gap: clamp(20px, 5vw, 48px);
       margin: 48px 0 32px;
       flex-wrap: wrap;
     }
     .hero-stats .number {
-      font-size: 2.2rem;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
       font-weight: 800;
       font-family: 'Space Grotesk', sans-serif;
       color: var(--accent);
     }
     .hero-stats .label {
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: clamp(0.7rem, 3vw, 0.85rem);
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     /* Grid para itens com barrinha lateral */
     .plain-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 32px;
       margin: 48px 0;
     }
@@ -191,17 +182,18 @@
       flex: 1;
     }
     .plain-item .content h3 {
-      font-size: 1.4rem;
+      font-size: clamp(1.2rem, 4vw, 1.4rem);
       margin-bottom: 12px;
     }
     .plain-item .content p {
       color: var(--text-secondary);
       line-height: 1.6;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
     }
     /* Metodologia (cards) */
     .method-steps {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
       margin: 40px 0;
     }
@@ -227,12 +219,14 @@
       color: #ffffff;
     }
     .step h3 {
+      font-size: clamp(1.1rem, 3.5vw, 1.3rem);
       margin-bottom: 8px;
     }
     .step p {
       color: var(--text-secondary);
+      font-size: clamp(0.85rem, 3vw, 0.95rem);
     }
-    /* Seção de oferta */
+    /* Seção de oferta - CORREÇÃO DO PREÇO RESPONSIVO */
     .offer-section {
       margin: 60px 0;
       text-align: left;
@@ -241,16 +235,25 @@
       padding: 48px 0;
     }
     .offer-section .price {
-      font-size: 2.8rem;
+      font-size: clamp(2rem, 8vw, 2.8rem);
       font-weight: 800;
       font-family: 'Space Grotesk', sans-serif;
       color: var(--accent);
       margin: 16px 0 8px;
+      line-height: 1.2;
+      word-break: keep-all;
+      white-space: normal;
+    }
+    @media (max-width: 480px) {
+      .offer-section .price {
+        font-size: 2rem;
+        word-break: break-word;
+      }
     }
     .offer-section .delivery {
       font-weight: 600;
       color: var(--accent-2);
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 4vw, 1.1rem);
       margin: 8px 0 12px;
     }
     .offer-section .offer-description {
@@ -258,6 +261,7 @@
       max-width: 700px;
       margin: 16px 0 16px;
       line-height: 1.6;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
     }
     .plain-text-list {
       margin: 20px 0;
@@ -267,6 +271,7 @@
       margin-bottom: 12px;
       color: var(--text-secondary);
       line-height: 1.5;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
     }
     .plain-text-list li strong {
       color: var(--accent);
@@ -279,6 +284,7 @@
       line-height: 1.6;
       border-left: 3px solid var(--accent);
       padding-left: 20px;
+      font-size: clamp(0.9rem, 3.5vw, 1rem);
     }
     /* FAQ (cards) */
     .faq-item {
@@ -296,7 +302,7 @@
       align-items: center;
       padding: 20px 0;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 4vw, 1.1rem);
       color: var(--text-primary);
     }
     .faq-answer {
@@ -305,6 +311,7 @@
       transition: 0.3s;
       color: var(--text-secondary);
       line-height: 1.6;
+      font-size: clamp(0.85rem, 3.5vw, 0.95rem);
     }
     .faq-item.active .faq-answer {
       max-height: 300px;
@@ -314,15 +321,12 @@
       color: var(--accent);
       transition: 0.2s;
     }
-    @media (max-width: 980px) {
-      .plain-grid { grid-template-columns: 1fr; }
-      .method-steps { grid-template-columns: repeat(2,1fr); }
-    }
     @media (max-width: 640px) {
-      .method-steps { grid-template-columns: 1fr; }
       .hero-stats { gap: 24px; justify-content: flex-start; }
-      .offer-section .price { font-size: 2rem; }
-      .skeleton-button { width: 100%; max-width: 280px; }
+      .plain-grid { gap: 24px; }
+      .method-steps { gap: 16px; }
+      .offer-section { padding: 32px 0; }
+      .hosting-info, .seo-info { padding-left: 12px; }
     }
   </style>
 </head>
@@ -360,10 +364,10 @@
     <div class="method-steps" id="methodSteps"></div>
   </section>
 
-  <!-- SEÇÃO DE OFERTA COM PLACEHOLDERS -->
+  <!-- SEÇÃO DE OFERTA COM PLACEHOLDERS E PREÇO RESPONSIVO -->
   <section class="offer-section">
     <h2 class="skeleton" style="width: 300px; max-width: 90%; min-height: 2rem;">Site profissional por um valor justo</h2>
-    <div class="price skeleton" style="width: 200px; max-width: 80%; min-height: 3rem;">R$ 49 por mês</div>
+    <div class="price skeleton" style="width: auto; max-width: 100%; min-height: 3rem; display: inline-block;">R$ 49 por mês</div>
     <div class="delivery skeleton" style="width: 280px; max-width: 90%; min-height: 1.5rem;">Entregamos em até 3 dias úteis</div>
     <p class="offer-description skeleton" style="width: 100%; min-height: 3rem;">Sem taxas de setup, sem contrato de fidelidade. Você só começa a pagar depois que o site estiver no ar e aprovado.</p>
     
@@ -379,7 +383,9 @@
 
     <p id="inclusoText" class="offer-description skeleton" style="width: 100%; min-height: 2.5rem;">Incluso: design responsivo, SEO básico, formulário de contato, domínio personalizado (ou subdomínio) e suporte mensal.</p>
     
-    <div id="offerButton" class="skeleton-button skeleton"></div>
+    <div id="offerButton" style="display: inline-block; width: auto; min-width: 200px; margin-top: 16px;">
+      <div class="skeleton" style="width: 100%; height: 48px; border-radius: 40px;"></div>
+    </div>
   </section>
 
   <!-- FAQ (cards) -->
@@ -466,10 +472,17 @@
     const offerSection = document.querySelector('.offer-section');
     offerSection.querySelector('h2').innerText = "Site profissional por um valor justo";
     offerSection.querySelector('h2').classList.remove('skeleton');
-    offerSection.querySelector('.price').innerText = "R$ 49 por mês";
-    offerSection.querySelector('.price').classList.remove('skeleton');
-    offerSection.querySelector('.delivery').innerText = "Entregamos em até 3 dias úteis";
-    offerSection.querySelector('.delivery').classList.remove('skeleton');
+    
+    const priceEl = offerSection.querySelector('.price');
+    priceEl.innerText = "R$ 49 por mês";
+    priceEl.classList.remove('skeleton');
+    priceEl.style.width = 'auto';
+    priceEl.style.display = 'inline-block';
+    
+    const deliveryEl = offerSection.querySelector('.delivery');
+    deliveryEl.innerText = "Entregamos em até 3 dias úteis";
+    deliveryEl.classList.remove('skeleton');
+    
     const descParagraphs = offerSection.querySelectorAll('.offer-description');
     descParagraphs[0].innerText = "Sem taxas de setup, sem contrato de fidelidade. Você só começa a pagar depois que o site estiver no ar e aprovado.";
     descParagraphs[0].classList.remove('skeleton');
@@ -513,13 +526,12 @@
 
     // Botão
     const buttonDiv = document.getElementById('offerButton');
-    buttonDiv.classList.remove('skeleton');
+    buttonDiv.innerHTML = '';
     const btn = document.createElement('a');
     btn.href = `https://wa.me/${PHONE}?text=Olá! Quero meu site por R$49/mês e em até 3 dias.`;
     btn.className = 'btn-primary';
     btn.target = '_blank';
     btn.innerHTML = '<i class="fab fa-whatsapp"></i> Fale comigo agora';
-    buttonDiv.innerHTML = '';
     buttonDiv.appendChild(btn);
 
     // FAQ
