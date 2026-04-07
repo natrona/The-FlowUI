@@ -137,22 +137,22 @@
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
-    /* Barras laterais com gradiente animado infinito */
+    /* Barras laterais com gradiente animado contínuo (linear, sem vai-e-volta) */
     .plain-item .bar {
       width: 4px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent));
-      background-size: 200% 200%;
-      animation: gradientMove 3s ease infinite;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent), var(--accent-2));
+      background-size: 300% 300%;
+      animation: gradientFlow 4s linear infinite;
       border-radius: 4px;
       flex-shrink: 0;
     }
-    /* Números dos passos da metodologia com gradiente animado */
+    /* Números dos passos da metodologia com gradiente animado contínuo */
     .step .step-number {
       width: 48px;
       height: 48px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent));
-      background-size: 200% 200%;
-      animation: gradientMove 3s ease infinite;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent), var(--accent-2));
+      background-size: 300% 300%;
+      animation: gradientFlow 4s linear infinite;
       border-radius: 60px;
       display: flex;
       align-items: center;
@@ -162,10 +162,9 @@
       font-size: 1.4rem;
       color: #ffffff;
     }
-    @keyframes gradientMove {
+    @keyframes gradientFlow {
       0% { background-position: 0% 0%; }
-      50% { background-position: 100% 100%; }
-      100% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
     }
     /* Números das estatísticas e preço sem gradiente animado (cor sólida) */
     .hero-stats .number {
